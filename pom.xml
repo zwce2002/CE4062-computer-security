@@ -1,92 +1,85 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.blackducksoftware.test</groupId>
-  <artifactId>example-maven-travis</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
+  <groupId>com.ntu.4062</groupId>
+  <artifactId>trial</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-  <name>Black Duck CoPilot Example for Maven/Travis CI</name>
-  <description>Provide an example of configuring a Maven project to use the Black Duck CoPilot application</description>
-  <url>https://github.com/BlackDuckCoPilot/example-maven-travis</url>
-  <inceptionYear>2017</inceptionYear>
-
-  <scm>
-    <connection>scm:git:git://github.com/blackducksoftware/hub-common.git/</connection>
-    <developerConnection>scm:git:git@github.com:BlackDuckCoPilot/example-maven-travis.git</developerConnection>
-    <url>https://github.com/BlackDuckCoPilot/example-maven-travis</url>
-  </scm>
+  <name>trial</name>
+  <url>http://maven.apache.org</url>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-	
+ <build>
+  	<plugins>
+  		<plugin>
+              <groupId>org.owasp</groupId>
+              <artifactId>dependency-check-maven</artifactId>
+              <version>3.3.2</version>
+              <executions>
+                  <execution>
+                      <goals>
+                          <goal>check</goal>
+                      </goals>
+                  </execution>
+              </executions>
+            </plugin>
+  		<plugin>
+	      <groupId>org.sonatype.ossindex.maven</groupId>
+	      <artifactId>ossindex-maven-plugin</artifactId>
+	      <version>3.0.1</version>
+	      <executions>
+	        <execution>
+	        <configuration>
+    			<reportFile>${project.build.directory}/audit-report.json</reportFile>
+  			</configuration>
+	          <goals>
+	            <goal>audit</goal>
+	          </goals>
+	        </execution>
+	      </executions>
+	    </plugin>
+  	</plugins>
+  </build>
   <dependencies>
     <dependency>
-      <groupId>org.jenkins-ci.main</groupId>
-      <artifactId>jenkins-core</artifactId>
-      <version>1.409.1</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.apache.tomcat </groupId>
-      <artifactId>tomcat-catalina</artifactId>
-      <version>6.0.18</version>
+    	<groupId>org.apache.derby</groupId>
+    	<artifactId>derby</artifactId>
+    	<version>10.1.1.0</version>
+    </dependency>
+     <dependency>
+    	<groupId>org.apache.struts</groupId>
+    	<artifactId>struts2-core</artifactId>
+    	<version>2.2.1</version>
     </dependency>
     <dependency>
-      <groupId>com.oracle.tools</groupId>
-      <artifactId>oracle-tools-core</artifactId>
-      <version>1.6.0</version>
+    	<groupId>org.apache.kafka</groupId>
+    	<artifactId>connect-api</artifactId>
+    	<version>0.10.0.0</version>
     </dependency>
     <dependency>
-      <groupId>org.owasp.esapi</groupId>
-      <artifactId>esapi</artifactId>
-      <version>2.0</version>
+    	<groupId>org.apache.wicket</groupId>
+    	<artifactId>wicket-core</artifactId>
+    	<version>1.5.14</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-catalina</artifactId>
-      <version>6.0.33</version>
+    	<groupId>org.apache.myfaces.core</groupId>
+    	<artifactId>myfaces-api</artifactId>
+    	<version>1.1.7</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-coyote</artifactId>
-      <version>6.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>oracle-tools-core</groupId>
-      <artifactId>oracle-tools-core</artifactId>
-      <version>1.5.0.update_55</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-cas</artifactId>
-      <version>3.1.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat</groupId>
-      <artifactId>tomcat-jasper</artifactId>
-      <version>6.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.elasticsearch</groupId>
-      <artifactId>elasticsearch</artifactId>
-      <version>1.5.2</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.pdfbox</groupId>
-      <artifactId>jempbox</artifactId>
-      <version>1.8.11</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.cxf</groupId>
-      <artifactId>ccxf-core</artifactId>
-      <version>3.0.11</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jboss.resteasy</groupId>
-      <artifactId>resteasy-jaxrs</artifactId>
-      <version>3.1.1</version>
+    	<groupId>org.apache.ranger</groupId>
+    	<artifactId>ranger-tools</artifactId>
+    	<version>0.6.0</version>
     </dependency>
   </dependencies>
 </project>
